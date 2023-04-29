@@ -25,10 +25,15 @@ services:
     x-develop:
       watch:
         - action: sync
-          path: .
+          path: ./result
           target: /app
+          ignore:
+            - package.json
+            - Dockerfile
         - action: rebuild
-          path: package.json
+          path: ./result/package.json
+        - action: rebuild
+          path: ./result/Dockerfile
     depends_on:
       db:
         condition: service_healthy 
